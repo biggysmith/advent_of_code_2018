@@ -62,10 +62,7 @@ void main()
             return tolower(c) != unit;
         });
 
-        size_t new_size = react(polymer);
-        if(new_size < min_polymers[omp_get_thread_num()]){
-            min_polymers[omp_get_thread_num()] = new_size;
-        }
+        min_polymers[omp_get_thread_num()] = std::min(min_polymers[omp_get_thread_num()], react(polymer));
     }
 
     std::cout << "part2: " << *std::min_element(min_polymers.begin(), min_polymers.end()) << std::endl;
