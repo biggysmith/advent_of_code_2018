@@ -18,7 +18,6 @@ std::vector<char> parse_input(const std::string& file){
     std::ifstream file_stream(file);
     std::string line;
     while (std::getline(file_stream, line)) {
-        //input.push_back({ line.substr(19), time_to_point(line.substr(1, 16)) });
         input.insert(input.end(), line.begin(), line.end());
     }
 
@@ -31,10 +30,11 @@ size_t react(std::vector<char> polymer){
         new_size = polymer.size();
         auto it0 = polymer.begin();
         auto it1 = std::next(it0);
-        for (; it1 != polymer.end(); ++it0, ++it1) {
+        auto end = polymer.end();
+        for (; it1 < end; ++it0, ++it1) {
             if (tolower(*it0) == tolower(*it1) && islower(*it0) != islower(*it1)) {
                 polymer.erase(it0, std::next(it1));
-                break;
+                end = polymer.end();
             }
         }
     }
