@@ -78,9 +78,8 @@ void main() {
         }
     };
 
-    auto update = [&]{
-        grid_copy = grid;
-        
+    auto update = [&]
+    {
         #pragma omp parallel for
         for(int y=0; y<grid.height; ++y){
             for(int x=0; x<grid.width; ++x){
@@ -108,6 +107,9 @@ void main() {
                 }
                 else if(grid(x,y) == '#' && !(trees >= 1 && yards >= 1)){
                     grid_copy(x, y) = '.';
+                }
+                else{
+                    grid_copy(x, y) = grid(x, y);
                 }
 
             }
