@@ -41,8 +41,8 @@ struct queue_t{
     tool_enum_t tool;
 };
 
-bool operator<(const queue_t& a, const queue_t& b){
-    return std::tie(a.dist,a.pos.x,a.pos.y,a.tool) < std::tie(b.dist,b.pos.x,b.pos.y,b.tool);
+bool operator>(const queue_t& a, const queue_t& b){
+    return std::tie(a.dist,a.pos.x,a.pos.y,a.tool) > std::tie(b.dist,b.pos.x,b.pos.y,b.tool);
 }
 
 struct visited_t{
@@ -152,15 +152,13 @@ bool traversable(grid_t& grid, const pos_t& pos){
 }
 
 int search(grid_t& grid, const pos_t& src, const pos_t& dst){
-    std::priority_queue<queue_t> q;
+    std::priority_queue<queue_t, std::vector<queue_t>, std::greater<queue_t>> q;
     std::set<visited_t> visited;
     q.push({{0,0},0,e_torch});
 
     while(!q.empty()) {
         auto curr = q.top();
         q.pop();
-
-        curr.dist = -curr.dist;
 
         if(curr.pos == dst && curr.tool == e_torch){
             return curr.dist;
@@ -177,7 +175,7 @@ int search(grid_t& grid, const pos_t& src, const pos_t& dst){
                        region == '=' && (tool==e_climbing_gear || tool==e_neither) ||
                        region == '|' && (tool==e_torch || tool==e_neither)) 
                     { 
-                        q.push({pos, -(curr.dist+dist), tool});
+                        q.push({pos, curr.dist+dist, tool});
                     }
                 }
             };
