@@ -25,6 +25,7 @@ add_executable(day18 src/day18/day18.cpp)
 add_executable(day19 src/day19/day19.cpp)
 add_executable(day20 src/day20/day20.cpp)
 add_executable(day21 src/day21/day21.cpp) 
+add_executable(day22 src/day22/day22.cpp) 
 
 set(CMAKE_CXX_STACK_SIZE "10000000") #recursion!!!
 
