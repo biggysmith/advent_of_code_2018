@@ -117,11 +117,11 @@ void main()
 
     pos_t zero { 0, 0, 0 };
     pos_t extent { max_extent, max_extent, max_extent };
-    box_t box { zero-extent, zero+extent };
+    box_t sbox { zero-extent, zero+extent };
 
 
     std::priority_queue<queue_t> q;
-    q.push({ (int)input.size(), max_extent*2, max_extent, box });
+    q.push({ (int)input.size(), max_extent*2, max_extent, sbox });
 
     while(!q.empty()){
         auto curr = q.top();
