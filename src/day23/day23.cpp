@@ -122,7 +122,7 @@ void main()
     max_z = std::max(std::abs(min_z), max_z);
 
     int64_t max_extent = std::max(max_x,std::max(max_y,max_z));
-    int64_t start_size = next_power_of_two(max_extent);
+    //int64_t start_size = next_power_of_two(max_extent);
 
     pos_t zero {0,0,0};
     pos_t extent { max_extent, max_extent, max_extent };
