@@ -70,14 +70,6 @@ int64_t manhatten_dist(const pos_t& a, const pos_t& b){
     return abs(b.x-a.x) + abs(b.y-a.y) + abs(b.z-a.z);
 }
 
-int64_t next_power_of_two(int64_t v){
-    int64_t ret = 1;
-    while(ret <= v){
-        ret *= 2;
-    }
-    return ret;
-}
-
 bool octant_intersect(const box_t& box, const pos_t& pos){
     int64_t r = (manhatten_dist(pos, box.mn) + manhatten_dist(pos, box.mx) - manhatten_dist(box.mx, box.mn)) / 2;
     return r <= pos.r;
@@ -122,9 +114,8 @@ void main()
     max_z = std::max(std::abs(min_z), max_z);
 
     int64_t max_extent = std::max(max_x,std::max(max_y,max_z));
-    //int64_t start_size = next_power_of_two(max_extent);
 
-    pos_t zero {0,0,0};
+    pos_t zero { 0, 0, 0 };
     pos_t extent { max_extent, max_extent, max_extent };
     box_t box { zero-extent, zero+extent };
 
