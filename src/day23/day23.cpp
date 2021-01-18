@@ -79,7 +79,7 @@ int64_t next_power_of_two(int64_t v){
 }
 
 bool octant_intersect(const box_t& box, const pos_t& pos){
-    int64_t r = (manhatten_dist(pos, box.mn) + manhatten_dist(pos, box.mx) - manhatten_dist(box.mx-box.mn, {0,0,0})) / 2;
+    int64_t r = (manhatten_dist(pos, box.mn) + manhatten_dist(pos, box.mx) - manhatten_dist(box.mx, box.mn)) / 2;
     return r <= pos.r;
 }
 
