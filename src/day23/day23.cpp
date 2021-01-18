@@ -139,8 +139,8 @@ void main()
             pos_t mn = curr.box.mn + half*offset;
             pos_t mx = mn + half;
             box_t box = { mn, mx };
-            int64_t in_range = std::accumulate(input.begin(),input.end(),0,[&](auto& a,auto& b){
-                return a + octant_intersect(box, b);
+            int64_t in_range = std::count_if(input.begin(),input.end(),[&](auto& b){
+                return octant_intersect(box, b);
             });
             q.push({ in_range, half.x, manhatten_dist(mn, zero), box });
         }
